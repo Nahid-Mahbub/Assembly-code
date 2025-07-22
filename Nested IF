@@ -1,0 +1,37 @@
+/*Nested IF:
+   IF AX < BX THEN
+     IF BX < CX THEN
+         put 0 in AX
+     ELSE
+         put 0 in BX
+     END_IF
+   END_IF */
+
+
+.model small
+.stack 100h
+.data
+.code 
+
+
+start:
+
+  mov ax, 2
+  mov bx, 3
+  mov cx, 4
+  
+  cmp ax, bx
+  jg skip_all
+  cmp bx, cx
+  jg else
+  mov ax, 0
+  jmp skip_all
+  
+ else:
+  mov bx, 0
+  
+ skip_all:
+  mov ah, 4Ch
+  int 21h
+  
+end start
