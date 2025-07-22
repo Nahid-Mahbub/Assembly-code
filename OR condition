@@ -1,0 +1,35 @@
+/* IF (AX < BX) OR (BX < CX) THEN
+    DX ← 0
+ELSE
+    DX ← 1
+END_IF */
+
+.model small
+.stack 100h
+.data
+.code 
+
+start:
+
+  mov ax, 2
+  mov bx, 3
+  mov cx, 4
+
+  cmp ax, bx
+  jl set_zero         ; If AX < BX, go to set DX = 0
+
+  cmp bx, cx
+  jl set_zero         ; If BX < CX, go to set DX = 0
+
+  ; Else case — both conditions false
+  mov dx, 1
+  jmp end_program
+
+set_zero:
+  mov dx, 0
+
+end_program:
+  mov ah, 4Ch
+  int 21h
+
+end start
