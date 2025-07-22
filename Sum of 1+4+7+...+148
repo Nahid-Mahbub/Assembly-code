@@ -1,0 +1,27 @@
+// 1+4+7+...+148
+.model small
+.stack 100h
+.data
+.code 
+
+
+start:
+    mov ax, 0
+    mov bx, 1
+    
+    
+   while:
+    cmp bx, 148
+    jg end
+    add ax, bx
+    add bx, 3
+    jmp while
+    
+   end:
+    mov dx, ax
+    mov ah, 02
+    int 21h 
+    mov ah, 4Ch
+    int 21h
+    
+end start
