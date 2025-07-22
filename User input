@@ -1,0 +1,53 @@
+/* Read a single character from user input.
+
+Check the character and perform different actions:
+
+If the character is "A":
+Execute a carriage return (moves cursor to start of line).
+
+If the character is "B":
+Execute a line feed (moves cursor to next line).
+
+For any other character:
+Exit the program and return to DOS.*/
+
+
+.model small
+.stack 100h
+.data
+.code 
+
+
+start:
+
+    mov ah, 01h
+    int 21h
+    
+    cmp ah, 'A'
+    je return_carriage
+    cmp ah, 'B'
+    je ececute_line
+    jmp return_DOS
+    
+    
+   return_carriage:
+    mov dl, 0Dh
+    mov ah, 02h
+    int 21h
+    jmp end
+   
+   ececute_line:
+    mov dl, 0Ah
+    mov ah, 02h
+    int 21h
+    jmp end
+    
+   return_DOS:
+    jmp end
+   
+   
+   
+   end:
+    mov ah, 4Ch
+    int 21h
+end start
