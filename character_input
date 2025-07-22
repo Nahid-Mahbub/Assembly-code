@@ -1,0 +1,22 @@
+// Take a character input, check if it's between A-Z, and print it if true.
+.model small
+.stack 100h
+.data
+.code
+start:
+  mov ah, 01h
+  int 21h
+
+  cmp al, 'A'
+  jge a_n_d
+  jmp end
+a_n_d: 
+  cmp al, 'Z'
+  jg end
+  mov dl, al
+  mov ah, 02h
+  int 21h
+end:
+  mov ah, 4Ch
+  int 21h
+end start
