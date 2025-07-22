@@ -1,0 +1,27 @@
+// sum 100+95+90+...+5
+.model small
+.stack 100h
+.data
+.code 
+
+
+start:
+    mov ax, 0
+    mov bx, 100
+    
+    
+   while:
+    cmp bx, 0
+    je end
+    add ax, bx
+    sub bx, 5
+    jmp while
+    
+   end:
+    mov dx, ax
+    mov ah, 02
+    int 21h 
+    mov ah, 4Ch
+    int 21h
+    
+end start
