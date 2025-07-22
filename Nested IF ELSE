@@ -1,0 +1,42 @@
+/* if (AX < BX) {
+    AX = 0;
+} else {
+    if (BX < CX) {
+        BX = 0;
+    } else {
+        CX = 0;
+    }
+} */
+
+.model small
+.stack 100h
+.data
+.code 
+
+
+start:
+
+    mov ax, 1
+    mov bx, 2
+    mov cx, 3
+    
+    cmp ax, bx
+    jl zero_ax
+    cmp bx, cx
+    jl zero_bx
+    mov cx, 0
+    jmp end
+   
+   zero_bx:
+    mov bx, 0
+    jmp end 
+    
+   zero_ax:
+    mov ax, 0
+   
+   
+   end:
+    mov ah, 4Ch
+    int 21h 
+  
+end start
