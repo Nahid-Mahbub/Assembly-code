@@ -1,0 +1,21 @@
+// Sum of first 50 number useing CX,  1+5+9+13+...
+.model small
+.stack 100h
+.data
+.code 
+
+
+start:
+    mov ax, 1
+    mov bx, 0
+    mov cx, 50
+    
+   sum_loop:
+    add bx, ax
+    add ax, 4
+    loop sum_loop
+    
+    mov ah, 4Ch
+    int 21h
+    
+end start
